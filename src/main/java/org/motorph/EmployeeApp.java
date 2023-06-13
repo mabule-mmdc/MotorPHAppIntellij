@@ -183,6 +183,7 @@ public class EmployeeApp {
             System.out.println("The gross monthly salary for " + selectedEmployee.getFirstName() + " " + selectedEmployee.getLastName() + " is " + selectedEmployee.getMonthlyGrossSalary(parseInt(monthNumber)));
 
             System.out.println("Printing this for our new branch");
+            System.out.println("New line");
         } catch (FileNotFoundException ex) {
             System.out.println("No file found");
         } catch (IOException ex) {
