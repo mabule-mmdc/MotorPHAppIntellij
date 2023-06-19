@@ -7,17 +7,27 @@ public class Employee {
     private String first_name;
     private String last_name;
     private float hourly_rate;
+    private float basic_salary;
     private ArrayList<Attendance> time_records = new ArrayList<>();
 
-    public Employee(String id, String firstName, String lastName, float hourlyRate) {
+    public Employee(String id, String firstName, String lastName, float hourlyRate, float basicSalary) {
         this.id = id;
         this.first_name = firstName;
         this.last_name = lastName;
         this.hourly_rate = hourlyRate;
+        this.basic_salary = basicSalary;
+    }
+
+    public float getBasicSalary() {
+        return this.basic_salary;
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getFullName() {
+        return this.first_name + " " + this.last_name;
     }
 
     public String getFirstName() {
@@ -58,5 +68,14 @@ public class Employee {
     public float getMonthlyGrossSalary(int monthNumber) {
         int monthlyHours = this.getMonthlyTotalHours(monthNumber);
         return this.hourly_rate * monthlyHours;
+    }
+
+    public float getMonthlyNetSalary(int monthNumber) {
+        float grossSalary = this.getMonthlyGrossSalary(monthNumber);
+        float netSalary = 0;
+
+        netSalary = Deductions.deductSSS(grossSalary);
+
+        return netSalary;
     }
 }
