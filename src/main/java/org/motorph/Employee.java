@@ -74,7 +74,31 @@ public class Employee {
         float grossSalary = this.getMonthlyGrossSalary(monthNumber);
         float netSalary = 0;
 
-        netSalary = Deductions.deductSSS(grossSalary);
+        float philhealthContribution = Deductions.computePhilHealth(this.basic_salary);
+
+        System.out.println("Philhealth is " + philhealthContribution);
+
+        float pagibigContribution = Deductions.computePagIBIG(this.basic_salary);
+
+        System.out.println("PAGIBIG is " + pagibigContribution);
+
+        float sssContribution = Deductions.computeSSS(grossSalary);
+
+        System.out.println("SSS is " + sssContribution);
+
+        float totalContributions = philhealthContribution + pagibigContribution + sssContribution;
+
+        System.out.println("Total contributions is " + totalContributions);
+
+        float taxableIncome = grossSalary - totalContributions;
+
+        System.out.println("Taxable income " + taxableIncome);
+
+        float withholdingTax = Deductions.computeWithholdingTax(taxableIncome);
+
+        System.out.println("Withholding tax is " + withholdingTax);
+
+        netSalary = taxableIncome - withholdingTax;
 
         return netSalary;
     }
